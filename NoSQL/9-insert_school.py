@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-""" 8-main """
-from pymongo import MongoClient
-list_all = __import__('8-all').list_all
+""" MongoDB insert """
 
-if __name__ == "__main__":
-    client = MongoClient('mongodb://127.0.0.1:27017')
-    school_collection = client.my_db.school
-    schools = list_all(school_collection)
-    for school in schools:
-        print("[{}] {}".format(school.get('_id'), school.get('name')))
+
+def insert_school(mongo_collection, **kwargs):
+    """function that inserts in school collection a document"""
+    if len(kwargs) == 0:
+        return None
+    return mongo_collection.insert(kwargs)
